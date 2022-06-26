@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password generator</title>
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container mt-5 col-md-6 offset-md-3">
+    <h3 class="text-center">Generate Password</h3>
+    <form class="border border-light p-5 " action="{{  url_for ('gen_pass') }}" method="POST" >
+      <select class="browser-default custom-select mb-4" name="pass_length" id="select" required>
+        <option value="" disabled="" selected="">Choose Password length</option>
+       {% for i in password_length %} 
+        <option value="{{i}}">{{i}}</option>
+      {% endfor %}
+      </select>
+
+      <div class="row">
+        <div class="col-md-6">
+          
+          <div class="custom-control custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkedboxForUppercase"  name="uppercase">
+            <label class="custom-control-label" for="checkedboxForUppercase">Upper case</label>
+          </div>
+
+        </div>
+        <div class="col-md-6">
+          
+          <div class="custom-control custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkboxForLowercase" name="lowercase">
+            <label class="custom-control-label" for="checkboxForLowercase">Lower case</label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="custom-control custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkboxForDigits" name="digits">
+            <label class="custom-control-label" for="checkboxForDigits">Digits</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="custom-control custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkboxForSpacial" name="specialcharacters">
+            <label class="custom-control-label" for="checkboxForSpacial">Special Characters</label>
+          </div>
+        </div>
+      
+      </div>
+      <button class="btn btn-info btn-block my-4" type="submit">Generat Passwoord</button>
+    </form>
+    <div class="container col-md-6 offset-md-3 mt-4 text-center">
+      {% if generated_password %}
+      <h6>Generated Password :</h6>
+      <p>{{generated_password}}</p>
+      {% endif %}
+    </div>
+  </div>
+</body>
+
+</html>
